@@ -3,118 +3,21 @@ import time
 import numpy as np
 import mujoco
 import mujoco.viewer
+from pathlib import Path
 
 # =====================================================
-# 1. 使用 MJCF XML 创建机械臂
+# 1. 加载机械臂模型
 # =====================================================
 
-xml = """
-<mujoco model="MyRobotArm">
+# 获取当前 Python 文件所在目录
+BASE_DIR = Path(__file__).resolve().parent
 
-    <default>
-        <geom contype="0" conaffinity="0"/>
-    </default>
+# 构造 XML 文件路径
+xml_path = BASE_DIR / "models" / "simple_arm.xml"
 
-    <compiler angle="radian"/>
+# 从外部 XML 文件加载机械臂
+model = mujoco.MjModel.from_xml_path(str(xml_path))
 
-    <option timestep="0.002" gravity="0 0 0"/>
-
-    <worldbody>
-
-        <!-- 地面 -->
-        <geom name="ground"
-              type="plane"
-              size="3 3 0.1"
-              rgba="0.7 0.7 0.7 1"/>
-
-        <!-- 固定底座 -->
-        <body name="base" pos="0 0 0.2">
-
-            <geom type="cylinder"
-                  size="0.15 0.2"
-                  rgba="0.3 0.3 0.3 1"/>
-
-            <!-- 第一个关节：底座旋转 -->
-            <body name="link1" pos="0 0 0.2">
-
-                <joint name="joint1"
-                       type="hinge"
-                       axis="0 0 1"
-                       range="-3.14 3.14"
-                       damping="2"/>
-
-                <geom type="sphere"
-                      size="0.09"
-                      rgba="0.2 0.2 0.2 1"/>
-
-                <!-- 第二个关节：肩部 -->
-                <body name="link2">
-
-                    <joint name="joint2"
-                           type="hinge"
-                           axis="0 1 0"
-                           range="-1.5 1.5"
-                           damping="2"/>
-
-                    <geom type="capsule"
-                          fromto="0 0 0 0.55 0 0"
-                          size="0.055"
-                          rgba="0.1 0.4 0.9 1"/>
-
-                    <!-- 第三个关节：肘部 -->
-                    <body name="link3" pos="0.55 0 0">
-
-                        <joint name="joint3"
-                               type="hinge"
-                               axis="0 1 0"
-                               range="-1.5 1.5"
-                               damping="2"/>
-
-                        <geom type="capsule"
-                              fromto="0 0 0 0.45 0 0"
-                              size="0.045"
-                              rgba="0.9 0.3 0.2 1"/>
-
-                        <!-- 末端执行器位置 -->
-                        <site name="end_effector"
-                              pos="0.45 0 0"
-                              size="0.065"
-                              rgba="0 1 0 1"/>
-
-                    </body>
-                </body>
-            </body>
-        </body>
-    </worldbody>
-
-    <!-- 关节位置控制器 -->
-    <actuator>
-
-        <position name="motor1"
-                  joint="joint1"
-                  kp="100"
-                  kv="15"/>
-
-        <position name="motor2"
-                  joint="joint2"
-                  kp="100"
-                  kv="15"/>
-
-        <position name="motor3"
-                  joint="joint3"
-                  kp="100"
-                  kv="15"/>
-
-    </actuator>
-
-</mujoco>
-"""
-
-# =====================================================
-# 2. 加载机械臂模型
-# =====================================================
-
-model = mujoco.MjModel.from_xml_string(xml)
 data = mujoco.MjData(model)
 
 print("Robot arm loaded!")
@@ -129,7 +32,7 @@ site_id = mujoco.mj_name2id(
 )
 
 # =====================================================
-# 3. 开始机械臂仿真
+# 2. 开始机械臂仿真
 # =====================================================
 
 with mujoco.viewer.launch_passive(model, data) as viewer:
@@ -147,9 +50,9 @@ with mujoco.viewer.launch_passive(model, data) as viewer:
         t = data.time
 
         # 三个关节的目标角度（单位：弧度）
-        target1 = -0.8
-        target2 = 0.5
-        target3 = 0.7
+        target1 = 0.8 * np.sin(t)
+        target2 = 0.5 * np.sin(t * 0.7)
+        target3 = 0.7 * np.sin(t * 1.2)
 
         # 向关节位置控制器发送目标
         data.ctrl[0] = target1
