@@ -3,3 +3,6 @@ venv/
 .idea/
 __pycache__/
 *.pyc
+
+# Third-party robot models
+third_party/mujoco_menagerie/
