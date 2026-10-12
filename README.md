@@ -17,18 +17,20 @@ An educational robotics simulation project developed with **MuJoCo**, covering *
 
 The videos below are **real recordings of the project's MuJoCo experiments**. Click **Watch MP4** to view the original high-quality clip. Demo 04 is a file-conversion utility, so it is documented with its verified output rather than a simulated motion video.
 
-> **Playback on GitHub:** The links below point to videos stored in `assets/`. GitHub README does not reliably render a playable video element from a relative `.mp4` path. To embed an actual player directly in this README, upload each MP4 through GitHub's editor and replace the video link with the generated `github.com/user-attachments/assets/...` attachment URL. The seven existing clips are preserved here without inventing attachment URLs.
+The following table summarizes all eight experiments. High-definition recordings are available in our [Interactive Video Gallery](https://szh1212.github.io/MuJoCo-Robotics-Simulation/).
 
-| Experiment | Recorded visualization | HD demonstration |
-|:---|:---:|:---:|
-| **01 · Automatic Arm Motion** — sinusoidal position commands to a 3-DOF MJCF arm | [![Custom arm](assets/robot_arm.png)](assets/demo01.mp4) | **[▶ Watch Demo 01](assets/demo01.mp4)** |
-| **02 · Joint Position Control** — three poses and tracking-error monitoring | [![Custom arm](assets/robot_arm.png)](assets/demo02.mp4) | **[▶ Watch Demo 02](assets/demo02.mp4)** |
-| **03 · URDF Model Loading** — imported and displayed URDF robot arm | [![URDF arm](assets/urdf_arm.png)](assets/demo03.mp4) | **[▶ Watch Demo 03](assets/demo03.mp4)** |
-| **04 · URDF → MJCF Conversion** — generated `converted_arm.xml` with 3 joints, 3 actuators and 4 geoms | **Conversion and verification tool** | No video — [source code](demos/04_urdf_to_mjcf.py) |
-| **05 · URDF-Based Joint Control** — commanded motion of converted model | [![URDF arm](assets/urdf_arm.png)](assets/demo05.mp4) | **[▶ Watch Demo 05](assets/demo05.mp4)** |
-| **06 · Shadow Hand Loading** — right-hand scene, joints and actuators | [![Shadow Hand](assets/shadow_hand.png)](assets/demo06.mp4) | **[▶ Watch Demo 06](assets/demo06.mp4)** |
-| **07 · Five-Finger Control** — cyclic flexion and extension | [![Shadow Hand](assets/shadow_hand_open.png)](assets/demo07.mp4) | **[▶ Watch Demo 07](assets/demo07.mp4)** |
-| **08 · Grasping Gesture** — coordinated 13-actuator open–close cycle | [![Shadow Hand closed](assets/shadow_hand_closed.png)](assets/demo08.mp4) | **[▶ Watch Demo 08](assets/demo08.mp4)** |
+| Experiment | Simulation Preview |
+|:---|:---:|
+| **01 · Automatic Arm Motion** — Sinusoidal position control of a custom 3-DOF MJCF robotic arm. | ![Custom Arm](assets/robot_arm.png) |
+| **02 · Joint Position Control** — Three target poses and joint tracking-error monitoring. | ![Joint Control](assets/robot_arm.png) |
+| **03 · URDF Model Loading** — Import and visualization of a 3-DOF URDF robotic arm. | ![URDF Arm](assets/urdf_arm.png) |
+| **04 · URDF to MJCF Conversion** — Automated model conversion and actuator configuration. Verified: 3 joints, 3 actuators, 4 geometries. | `simple_arm.urdf` → `converted_arm.xml` |
+| **05 · URDF-Based Joint Control** — Joint position control of the converted MJCF model. | ![URDF Control](assets/urdf_arm.png) |
+| **06 · Shadow Hand Loading** — Official Shadow Hand model with 25 joints and 20 actuators. | ![Shadow Hand](assets/shadow_hand.png) |
+| **07 · Five-Finger Control** — Periodic flexion and extension of five fingers. | ![Finger Control](assets/shadow_hand_open.png) |
+| **08 · Shadow Hand Grasping Gesture** — Coordinated control of 13 actuators with four repeatable open–close cycles. | ![Grasping Gesture](assets/shadow_hand_closed.png) |
+
+*All preview images were captured from the project's MuJoCo simulations. Full HD videos are available through the interactive gallery.*
 
 ### Experiment snapshots
 
