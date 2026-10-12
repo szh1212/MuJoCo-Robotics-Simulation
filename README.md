@@ -1,5 +1,10 @@
 # MuJoCo Robotics Simulation
+### 🎬 HD Simulation Gallery
 
+**[▶ Watch Our Robotics Simulation Demonstrations](https://szh1212.github.io/MuJoCo-Robotics-Simulation/)**
+
+Seven recorded demonstrations covering MJCF/URDF modeling,
+joint-space control, and Shadow Hand dexterous motion.
 **From Robot Description to Joint Control and Dexterous Hand Motion**
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue) ![MuJoCo](https://img.shields.io/badge/MuJoCo-3.15.0-blue) ![Status](https://img.shields.io/badge/Status-8%20Demos-brightgreen) ![Model](https://img.shields.io/badge/Model-Shadow%20Hand-purple)
