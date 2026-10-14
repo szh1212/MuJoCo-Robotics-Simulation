@@ -1,0 +1,32 @@
+<mujoco model="right leap hand grasp scene">
+  <include file="right_hand.xml"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="35" elevation="-50"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 1" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+
+    <!-- grasped object: 5cm cube. z is the height at which the open hand just starts to
+         touch it (0.1545) plus a hair, so it settles into the cradle instead of bouncing: a
+         drop of a couple of cm makes it tumble and the fingers then miss it. (x, y) is the
+         landing spot that survives the lift AND the x/y moves; it is picky at the mm level, so
+         if you move the cube, re-run grasp_cube.py and check the slip column. -->
+    <body name="cube" pos="0.030 0.020 0.156">
+      <freejoint/>
+      <geom name="cube" type="box" size="0.025 0.025 0.025" mass="0.05" friction="1.2 0.01 0.001"
+        rgba=".85 .38 .18 1"/>
+    </body>
+  </worldbody>
+</mujoco>
