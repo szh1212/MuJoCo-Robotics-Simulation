@@ -56,8 +56,7 @@ OPEN_POSE = np.array([0.0] * 12 + [0.0, 0.0, 0.2, 0.2], dtype=float)
 BASE_POSE = np.array(
     [0.85, 0.0, 0.95, 0.55] * 3 + [1.10, 0.55, 0.90, 0.35], dtype=float
 )
-# 闭合幅度 = BASE_POSE * CLOSE_SCALE。想自己试就改这一行，或者跑命令时加
-# --close 1.3（不用改代码）。参考解用 1.3 倍（那是 4.4cm 方块）；5cm 方块
+# 闭合幅度 = BASE_POSE * CLOSE_SCALE。
 # 用 1.3 倍只抬 z 还行，一横移方块就容易从指笼里滑出去。越小捏得越松。
 CLOSE_SCALE = 1.6
 
